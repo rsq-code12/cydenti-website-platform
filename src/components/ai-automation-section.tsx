@@ -20,12 +20,10 @@ export function AiAutomationSection() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center group/section">
           
           {/* Feature 1: AI & LLMs */}
-          <div className="relative group">
-            {/* Visual Decoration */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+          <div className="relative">
             
             <div className="relative space-y-8">
               <div className="inline-flex items-center gap-2 text-blue-400 font-bold tracking-widest text-xs uppercase bg-blue-900/30 px-3 py-1 rounded-full border border-blue-800/50">
@@ -60,8 +58,11 @@ export function AiAutomationSection() {
           </div>
 
           {/* Visual 1: AI Analysis Card */}
-          <div className="relative">
-             <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 backdrop-blur-sm relative overflow-hidden">
+          <div className="relative transition-all duration-500">
+             {/* Hover Glow */}
+             <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-3xl blur-xl opacity-0 group-hover/section:opacity-100 transition-opacity duration-700" />
+             
+             <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 backdrop-blur-sm relative overflow-hidden transition-colors duration-500 group-hover/section:border-blue-500/30">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 blur-3xl rounded-full pointer-events-none" />
                 
                 {/* Mock Code / Analysis UI */}
@@ -73,26 +74,26 @@ export function AiAutomationSection() {
                     <span className="ml-auto text-xs">analysis_module.py</span>
                   </div>
                   
-                  <div className="text-purple-400">def analyze_identity_risk(user_context):</div>
-                  <div className="pl-4 text-slate-300">
+                  <div className="text-purple-400 opacity-50 group-hover/section:opacity-100 transition-opacity duration-300">def analyze_identity_risk(user_context):</div>
+                  <div className="pl-4 text-slate-300 opacity-50 group-hover/section:opacity-100 transition-opacity duration-300 delay-75">
                     risk_score = <span className="text-blue-400">0</span>
                   </div>
-                  <div className="pl-4 text-slate-300">
+                  <div className="pl-4 text-slate-300 opacity-50 group-hover/section:opacity-100 transition-opacity duration-300 delay-150">
                     permissions = scan_cloud_entitlements()
                   </div>
-                  <div className="pl-4 text-slate-300">
+                  <div className="pl-4 text-slate-300 opacity-50 group-hover/section:opacity-100 transition-opacity duration-300 delay-200">
                     <span className="text-purple-400">if</span> <span className="text-green-400">"Shadow Admin"</span> <span className="text-purple-400">in</span> permissions:
                   </div>
-                  <div className="pl-8 text-slate-300">
+                  <div className="pl-8 text-slate-300 opacity-50 group-hover/section:opacity-100 transition-opacity duration-300 delay-300">
                     flag_anomaly(<span className="text-green-400">"Hidden Path Discovered"</span>)
                   </div>
-                  <div className="pl-8 text-slate-300">
+                  <div className="pl-8 text-slate-300 opacity-50 group-hover/section:opacity-100 transition-opacity duration-300 delay-500">
                     risk_score += <span className="text-blue-400">95</span> <span className="text-slate-500"># Critical</span>
                   </div>
                 </div>
 
                 {/* Floating Badge */}
-                <div className="absolute bottom-6 right-6 bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg shadow-blue-500/20 flex items-center gap-2 animate-pulse">
+                <div className="absolute bottom-6 right-6 bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg shadow-blue-500/20 flex items-center gap-2 opacity-0 translate-y-4 group-hover/section:opacity-100 group-hover/section:translate-y-0 transition-all duration-500 delay-700">
                    <Cpu className="w-3 h-3" />
                    Processing Local
                 </div>
@@ -104,11 +105,11 @@ export function AiAutomationSection() {
         {/* Divider */}
         <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-800 to-transparent my-32" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center group/automation">
           
           {/* Visual 2: Automation Dashboard */}
-          <div className="relative order-2 lg:order-1">
-             <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 backdrop-blur-sm">
+          <div className="relative order-2 lg:order-1 transition-transform duration-500">
+             <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 backdrop-blur-sm relative overflow-hidden transition-colors duration-500 group-hover/automation:border-green-500/30">
                 <div className="space-y-4">
                    {[
                       { label: "Risk Scoring", status: "Complete", color: "text-green-400" },
@@ -117,18 +118,28 @@ export function AiAutomationSection() {
                       { label: "Alert Enrichment", status: "Queued", color: "text-slate-500" },
                       { label: "Audit Reporting", status: "Queued", color: "text-slate-500" }
                    ].map((task, i) => (
-                      <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-slate-950/50 border border-slate-800/50">
-                         <span className="text-slate-300 font-medium text-sm">{task.label}</span>
-                         <span className={cn("text-xs font-mono", task.color)}>{task.status}</span>
+                      <div key={i} 
+                           className="flex items-center justify-between p-3 rounded-lg bg-slate-950/50 border border-slate-800/50 transition-all duration-500"
+                           style={{ transitionDelay: `${i * 100}ms` }}
+                      >
+                         <span className="text-slate-300 font-medium text-sm group-hover/automation:text-white transition-colors">{task.label}</span>
+                         <span className={cn("text-xs font-mono transition-all duration-300 origin-right", task.color)}>{task.status}</span>
                       </div>
                    ))}
                 </div>
                 
-                {/* Overlay Success */}
-                <div className="absolute inset-0 flex items-center justify-center bg-slate-900/10 backdrop-blur-[1px]">
-                   <div className="bg-[#0B1120] border border-green-500/30 text-green-400 px-6 py-3 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-12 lg:translate-y-0">
+                {/* Overlay Success - Zero Data Egress */}
+                <div className="absolute inset-0 flex items-center justify-center bg-slate-900/10 backdrop-blur-[1px] opacity-0 group-hover/automation:opacity-100 transition-opacity duration-500 pointer-events-none">
+                   {/* Card 1: Zero Data Egress */}
+                   <div className="bg-[#0B1120] border border-green-500/30 text-green-400 px-6 py-3 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-8 group-hover/automation:translate-y-[-20px] transition-all duration-500 delay-100">
                       <CheckCircle2 className="w-5 h-5" />
                       <span className="font-bold">Zero Data Egress</span>
+                   </div>
+
+                   {/* Card 2: Audit Report (New) */}
+                   <div className="absolute bg-[#0B1120] border border-blue-500/30 text-blue-400 px-6 py-3 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-12 group-hover/automation:translate-y-[40px] transition-all duration-500 delay-200">
+                      <CheckCircle2 className="w-5 h-5" />
+                      <span className="font-bold">Audit Report Ready</span>
                    </div>
                 </div>
              </div>

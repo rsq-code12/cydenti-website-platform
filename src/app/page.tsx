@@ -1,19 +1,23 @@
 import { Hero } from "@/components/hero";
+import { FeatureCardsSection } from "@/components/feature-cards-section";
 import { IdentityFlowchartSection } from "@/components/identity-flowchart-section";
 import { AiAutomationSection } from "@/components/ai-automation-section";
 import { WhyCydentiSection } from "@/components/why-cydenti-section";
 import { UseCasesSection } from "@/components/use-cases-section";
+
 import { CtaSection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
+    <main className="flex min-h-screen flex-col items-center justify-between overflow-x-hidden w-full">
       <Hero />
+      <FeatureCardsSection />
       <IdentityFlowchartSection />
       <AiAutomationSection />
       <WhyCydentiSection />
       <UseCasesSection />
+
       <CtaSection />
       <Footer />
     </main>

@@ -7,10 +7,10 @@ import { Globe } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-[#020617] text-slate-400 py-16 border-t border-slate-800 relative overflow-hidden w-full">
+    <footer className="bg-[#020617] text-slate-400 py-24 border-t border-slate-800 relative overflow-hidden w-full">
       {/* Background CYDENTI Text */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none select-none">
-        <h1 className="text-[15vw] font-black text-slate-900/50 tracking-tighter leading-none whitespace-nowrap" 
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[20%] pointer-events-none select-none">
+        <h1 className="text-[20vw] font-black tracking-tighter leading-none whitespace-nowrap bg-gradient-to-b from-transparent to-white/10 bg-clip-text" 
             style={{ 
               WebkitTextStroke: '2px rgba(30, 41, 59, 0.5)', 
               color: 'transparent' 

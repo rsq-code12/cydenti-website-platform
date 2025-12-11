@@ -55,8 +55,8 @@ export function WhyCydentiSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           {features.map((feature, index) => (
             <div key={index} className="flex gap-5 items-start group">
-              <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 shrink-0 group-hover:scale-110 transition-transform duration-300 border border-blue-100">
-                <feature.icon className="w-6 h-6" />
+              <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-2xl flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-blue-500/20">
+                <feature.icon className="w-7 h-7" />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">

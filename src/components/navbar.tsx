@@ -34,8 +34,8 @@ export default function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/80 backdrop-blur-md supports-[backdrop-filter]:bg-white/60">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
+    <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
+      <div className="flex h-16 w-full max-w-7xl items-center justify-between rounded-full border border-gray-200/50 bg-white/80 px-6 backdrop-blur-md shadow-sm transition-all hover:shadow-md">
         <Link href="/" className="flex items-center gap-2">
           {/* Brandmark (Colored) */}
           <Image src="/cydenti-brandmark.svg" alt="Cydenti" width={32} height={32} priority />
