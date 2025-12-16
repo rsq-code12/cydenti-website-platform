@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from './ui/button';
@@ -8,12 +8,10 @@ import { Button } from './ui/button';
 export function AdminLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
-  const [authenticated] = useState(() => !!localStorage.getItem('adminToken'));
+  const authenticated = typeof window !== 'undefined' && !!localStorage.getItem('adminToken');
 
   useEffect(() => {
-    if (!authenticated) {
-      router.push('/admin');
-    }
+    if (!authenticated) router.push('/admin');
   }, [authenticated, router]);
 
   const handleLogout = () => {
