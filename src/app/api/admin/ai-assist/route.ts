@@ -9,28 +9,76 @@ function authenticate(req: NextRequest) {
   return true;
 }
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+const YOU_AI_API_KEY = process.env.YOU_AI_API_KEY;
+const YOU_AI_API_URL = process.env.YOU_AI_API_URL || 'https://api.you.com/v1/agents/runs';
 
-async function callGemini(prompt: string) {
-  if (!GEMINI_API_KEY) {
-    throw new Error('GEMINI_API_KEY is not configured');
+function extractYouText(data: unknown): string {
+  if (typeof data === 'string') return data;
+  if (!data || typeof data !== 'object') return '';
+
+  const record = data as Record<string, unknown>;
+  const directKeys = ['output_text', 'answer', 'text', 'content'];
+  for (const key of directKeys) {
+    const value = record[key];
+    if (typeof value === 'string' && value.trim()) return value;
   }
 
-  const response = await fetch(GEMINI_API_URL, {
+  const response = record.response;
+  if (response && typeof response === 'object') {
+    const responseRecord = response as Record<string, unknown>;
+    const responseText =
+      (typeof responseRecord.output_text === 'string' && responseRecord.output_text) ||
+      (typeof responseRecord.text === 'string' && responseRecord.text);
+    if (responseText && responseText.trim()) return responseText;
+
+    const output = responseRecord.output;
+    if (Array.isArray(output)) {
+      for (const item of output) {
+        const extracted = extractYouText(item);
+        if (extracted.trim()) return extracted;
+      }
+    }
+  }
+
+  const output = record.output;
+  if (Array.isArray(output)) {
+    for (const item of output) {
+      const extracted = extractYouText(item);
+      if (extracted.trim()) return extracted;
+    }
+  }
+
+  return '';
+}
+
+async function callYouAI(prompt: string) {
+  if (!YOU_AI_API_KEY) {
+    throw new Error('YOU_AI_API_KEY is not configured');
+  }
+
+  const response = await fetch(YOU_AI_API_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: `Bearer ${YOU_AI_API_KEY}`,
+    },
     body: JSON.stringify({
-      contents: [{ parts: [{ text: prompt }] }],
+      agent: 'advanced',
+      input: prompt,
+      stream: false,
     }),
   });
 
   if (!response.ok) {
-    throw new Error(`Gemini API Error: ${response.statusText}`);
+    const errorBody = await response.text().catch(() => '');
+    throw new Error(
+      `You AI API Error: ${response.status} ${response.statusText}${errorBody ? ` - ${errorBody}` : ''}`
+    );
   }
 
-  const data = await response.json();
-  return data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+  const data = (await response.json().catch(() => null)) as unknown;
+  return extractYouText(data) || '';
 }
 
 export async function POST(req: NextRequest) {
@@ -40,7 +88,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const { action, title, description, focusKeyword, content } = body || {};
+    const { action, title, focusKeyword, content } = body || {};
 
     let prompt = '';
     let result = '';
@@ -67,7 +115,7 @@ export async function POST(req: NextRequest) {
         }
         Ensure the content is professional, informative, and at least 800 words.`;
         
-        const rawResponse = await callGemini(prompt);
+        const rawResponse = await callYouAI(prompt);
         // Clean markdown code blocks if present
         const cleanedResponse = rawResponse.replace(/```json\n?|\n?```/g, '').trim();
         return NextResponse.json(JSON.parse(cleanedResponse));
@@ -85,7 +133,7 @@ export async function POST(req: NextRequest) {
       - Make it actionable and click-worthy.
       - Return ONLY the description text.`;
       
-      result = await callGemini(prompt);
+      result = await callYouAI(prompt);
       return NextResponse.json({ suggestion: result.trim() });
     }
 
@@ -98,7 +146,7 @@ export async function POST(req: NextRequest) {
       - Use power words (e.g., Ultimate, Guide, Proven).
       - Return ONLY the raw title text. No numbering, no quotes, no intro text like "Here is the title".`;
       
-      result = await callGemini(prompt);
+      result = await callYouAI(prompt);
       // Extra cleanup just in case
       const cleanTitle = result.replace(/^["']|["']$/g, '').replace(/^(Here is|Title:|Suggestion:)\s*/i, '').trim();
       return NextResponse.json({ suggestion: cleanTitle });
@@ -115,7 +163,7 @@ export async function POST(req: NextRequest) {
         - Include the keyword "${focusKeyword}".
         - Return ONLY the excerpt text.`;
         
-        result = await callGemini(prompt);
+        result = await callYouAI(prompt);
         return NextResponse.json({ suggestion: result.trim() });
     }
 
@@ -132,7 +180,7 @@ export async function POST(req: NextRequest) {
         - Maintain the original meaning/tone unless asked to change.
         - Do not add quotes or prefixes.`;
         
-        result = await callGemini(prompt);
+        result = await callYouAI(prompt);
         return NextResponse.json({ suggestion: result.trim() });
     }
 
@@ -148,7 +196,7 @@ export async function POST(req: NextRequest) {
         - Descriptive but includes keyword naturally if relevant.
         - Return ONLY the alt text.`;
         
-        result = await callGemini(prompt);
+        result = await callYouAI(prompt);
         return NextResponse.json({ suggestion: result.trim() });
     }
 
@@ -166,7 +214,7 @@ export async function POST(req: NextRequest) {
         
         Return ONLY the markdown block.`;
         
-        result = await callGemini(prompt);
+        result = await callYouAI(prompt);
         return NextResponse.json({ suggestion: result.trim() });
     }
 
@@ -181,7 +229,7 @@ export async function POST(req: NextRequest) {
         
         Return ONLY the markdown block.`;
         
-        result = await callGemini(prompt);
+        result = await callYouAI(prompt);
         return NextResponse.json({ suggestion: result.trim() });
     }
 

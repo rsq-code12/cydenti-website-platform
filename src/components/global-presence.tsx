@@ -48,43 +48,17 @@ export function GlobalPresence() {
             />
           </div>
 
-          {/* Highlights */}
-          {/* France */}
           <div className="absolute top-[28%] left-[49%] group/pin">
             <div className="relative flex items-center justify-center">
-               <span className="animate-ping absolute inline-flex h-6 w-6 rounded-full bg-blue-400 opacity-75"></span>
-               <span className="relative inline-flex rounded-full h-4 w-4 bg-blue-500 border-2 border-white shadow-[0_0_15px_rgba(59,130,246,0.5)]"></span>
+               <span className="animate-ping absolute inline-flex h-10 w-10 rounded-full bg-blue-400/80 opacity-80"></span>
+               <span className="absolute inline-flex h-8 w-8 rounded-full border-2 border-blue-300/80 shadow-[0_0_30px_rgba(59,130,246,0.8)]"></span>
+               <span className="relative inline-flex rounded-full h-4 w-4 bg-blue-500 border-2 border-white shadow-[0_0_25px_rgba(59,130,246,0.9)]"></span>
             </div>
-            <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-white text-slate-900 text-xs font-bold px-3 py-1.5 rounded-lg shadow-xl opacity-0 group-hover/pin:opacity-100 transition-all duration-300 whitespace-nowrap -translate-y-2 group-hover/pin:translate-y-0 z-20">
+            <div className="absolute top-10 left-1/2 -translate-x-1/2 bg-white text-slate-900 text-xs font-bold px-4 py-2 rounded-lg shadow-2xl whitespace-nowrap z-20 border border-blue-100">
               Headquarters (France)
               <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white rotate-45" />
             </div>
           </div>
-
-          {/* Other presence dots */}
-          {[
-            { top: '35%', left: '28%', label: 'North America' }, 
-            { top: '30%', left: '52%', label: 'Europe' },        
-            { top: '55%', left: '52%', label: 'Africa' },        
-            { top: '35%', left: '72%', label: 'Asia' },          
-          ].map((loc, i) => (
-             <motion.div 
-               key={i} 
-               initial={{ scale: 0, opacity: 0 }}
-               whileInView={{ scale: 1, opacity: 1 }}
-               viewport={{ once: true }}
-               transition={{ delay: 0.5 + (i * 0.1) }}
-               className="absolute group/pin" 
-               style={{ top: loc.top, left: loc.left }}
-             >
-                <div className="relative flex items-center justify-center">
-                   <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-400/80 shadow-[0_0_10px_rgba(45,212,191,0.5)]"></span>
-                </div>
-                 <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] px-2 py-1 rounded border border-slate-700 opacity-0 group-hover/pin:opacity-100 transition-all duration-300 whitespace-nowrap -translate-y-1 group-hover/pin:translate-y-0 z-20">
-                  {loc.label}
-                </div>
-             </motion.div>
-          ))}
 
         </motion.div>
       </div>

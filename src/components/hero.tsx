@@ -3,12 +3,43 @@
 import React from 'react';
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { TypewriterLoop } from "@/components/ui/typewriter-effect";
 import { 
   ArrowRight, 
   FileText
 } from 'lucide-react';
 
+const gradientClass = "text-transparent bg-clip-text bg-[linear-gradient(120deg,var(--color-cydenti-primary),var(--color-cydenti-secondary),var(--color-cydenti-primary))] animate-text-shimmer";
+const defaultClass = "text-slate-900";
+
+const wordsArray = [
+  [
+    { text: "Your", className: defaultClass },
+    { text: "SaaS", className: gradientClass },
+    { text: "and", className: defaultClass },
+    { text: "Identity", className: gradientClass },
+    { text: "Blind", className: defaultClass },
+    { text: "Spots", className: defaultClass },
+  ],
+  [
+    { text: "Your", className: defaultClass },
+    { text: "AI", className: gradientClass },
+    { text: "Agents", className: gradientClass },
+    { text: "and", className: defaultClass },
+    { text: "Non-Human", className: gradientClass },
+    { text: "Identities,", className: gradientClass },
+  ],
+  [
+    { text: "Permissions,", className: gradientClass },
+    { text: "SaaS", className: gradientClass },
+    { text: "Sprawl,", className: gradientClass },
+    { text: "and", className: defaultClass },
+    { text: "Risks", className: gradientClass },
+  ],
+];
+
 export function Hero() {
+
   return (
     <section className="relative w-full overflow-visible bg-white pt-24 pb-12 lg:pt-32 lg:pb-12">
       {/* Background decoration */}
@@ -48,7 +79,7 @@ export function Hero() {
             className="text-5xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 mb-6 leading-[1.1] md:leading-[1.05]"
           >
             The Sovereign <span className="text-transparent bg-clip-text bg-[linear-gradient(120deg,var(--color-cydenti-primary),var(--color-cydenti-secondary),var(--color-cydenti-primary))] animate-text-shimmer">Intelligence Layer</span> for<br />
-            Your <span className="text-transparent bg-clip-text bg-[linear-gradient(120deg,var(--color-cydenti-primary),var(--color-cydenti-secondary),var(--color-cydenti-primary))] animate-text-shimmer">SaaS</span> and <span className="text-transparent bg-clip-text bg-[linear-gradient(120deg,var(--color-cydenti-primary),var(--color-cydenti-secondary),var(--color-cydenti-primary))] animate-text-shimmer">Identity</span> Blind Spots
+            <TypewriterLoop wordsArray={wordsArray} className="inline-block text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.1] md:leading-[1.05]" cursorClassName="bg-blue-500 h-10 md:h-12 lg:h-16 w-1 align-middle" wait={1500} />
           </h1>
 
           <p 
@@ -58,21 +89,23 @@ export function Hero() {
           </p>
 
           <div 
-            className="relative z-20 flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto"
+            className="relative z-20 flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto items-center"
           >
-            <Button 
-              asChild
-              size="lg" 
-              className="group relative overflow-hidden rounded-full bg-slate-900 hover:bg-slate-800 text-white font-semibold px-8 h-14 text-lg shadow-xl hover:shadow-2xl hover:shadow-cydenti-primary/20 transition-all duration-300 hover:-translate-y-0.5"
-            >
-              <Link href="/demo">
-                <span className="relative z-10 flex items-center">
-                  Get a Demo
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] z-0" />
-              </Link>
-            </Button>
+            <div className="relative group p-[2px] rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400 bg-[length:200%_auto] animate-gradient-x shadow-[0_0_20px_-5px_rgba(6,182,212,0.3)] transition-all duration-300 group-hover:shadow-[0_0_30px_-5px_rgba(6,182,212,0.6)] group-hover:-translate-y-0.5">
+              <Button 
+                asChild
+                size="lg" 
+                className="relative rounded-full bg-slate-950 hover:bg-slate-900 text-white font-semibold px-8 h-[52px] w-full text-lg transition-colors duration-300 border-none"
+              >
+                <a href="https://www.linkedin.com/company/cydenti/" target="_blank" rel="noopener noreferrer">
+                  <span className="relative z-10 flex items-center">
+                    Get a Demo
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform text-cyan-400" />
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] z-0" />
+                </a>
+              </Button>
+            </div>
 
             <Button 
               asChild

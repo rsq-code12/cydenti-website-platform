@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export function UseCasesSection() {
   const useCases = [
@@ -120,8 +121,10 @@ export function UseCasesSection() {
               </p>
 
               <div className="pt-4">
-                <Button className="bg-slate-900 text-white hover:bg-slate-800 rounded-full px-8 py-6 text-lg font-semibold transition-all hover:scale-105 shadow-lg shadow-slate-900/20">
-                  Explore Platform <ArrowRight className="ml-2 w-5 h-5" />
+                <Button asChild className="bg-slate-900 text-white hover:bg-slate-800 rounded-full px-8 py-6 text-lg font-semibold transition-all hover:scale-105 shadow-lg shadow-slate-900/20">
+                  <Link href="/platform">
+                    Explore Platform <ArrowRight className="ml-2 w-5 h-5" />
+                  </Link>
                 </Button>
               </div>
 

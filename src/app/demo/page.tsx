@@ -8,7 +8,7 @@ export default function Page() {
       <p className="mt-4 text-zinc-600">Schedule a live walkthrough of the platform.</p>
       <div className="mt-6">
         <Button asChild>
-          <Link href="#">Request Demo</Link>
+          <a href="https://www.linkedin.com/company/cydenti/" target="_blank" rel="noopener noreferrer">Request Demo</a>
         </Button>
       </div>
     </main>

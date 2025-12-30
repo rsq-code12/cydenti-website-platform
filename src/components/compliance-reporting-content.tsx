@@ -246,7 +246,7 @@ export function ComplianceReportingContent() {
                   }
                 ].map((item, i) => (
                   <div key={i} className="relative pl-24 group">
-                    <div className="absolute left-0 w-16 h-16 rounded-2xl bg-white border-2 border-slate-100 flex items-center justify-center text-slate-400 font-bold text-xl shadow-sm z-10 group-hover:border-blue-500 group-hover:text-blue-600 transition-colors">
+                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white border-2 border-slate-100 flex items-center justify-center text-slate-400 font-bold text-xl shadow-sm z-10 group-hover:border-blue-500 group-hover:text-blue-600 transition-colors">
                       {item.step}
                     </div>
                     <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-lg transition-all hover:border-blue-100">
@@ -262,7 +262,12 @@ export function ComplianceReportingContent() {
                 ))}
               </div>
 
-              <div className="mt-12 pl-24">
+              <div className="mt-12 pl-24 relative">
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white border-2 border-blue-100 flex items-center justify-center shadow-md z-10">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center text-white">
+                    <CheckCircle2 className="w-6 h-6" />
+                  </div>
+                </div>
                 <div className="p-6 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl text-white shadow-xl flex items-center justify-between gap-8">
                   <div>
                     <h4 className="text-xl font-bold mb-2">This is where audits stop being adversarial.</h4>

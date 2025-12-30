@@ -2,16 +2,29 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function IntegrationsSection() {
   const integrations = [
-    { alt: "Microsoft Entra ID", src: "CYDENTI DASHBOARD P 2/Microsoft_Entra_ID_color_icon 1.svg" },
-    { alt: "Google", src: "CYDENTI DASHBOARD P 2/Google__G__logo 2.svg" },
-    { alt: "Google Cloud", src: "CYDENTI DASHBOARD P 2/google_cloud-icon 1.svg" },
+    { alt: "CrowdStrike", src: "/CYDENTI DASHBOARD P 2/crowdstrike.png" },
+    { alt: "GitLab", src: "/CYDENTI DASHBOARD P 2/gitlab.png" },
+    { alt: "GitHub", src: "/CYDENTI DASHBOARD P 2/GitHub-Mark-ea2971cee799.png" },
+    { alt: "Bitbucket", src: "/CYDENTI DASHBOARD P 2/bitbucket.svg.png" },
+    { alt: "Zendesk", src: "/CYDENTI DASHBOARD P 2/zendesk.png" },
+    { alt: "ServiceNow", src: "/CYDENTI DASHBOARD P 2/servicenow.svg" },
+    { alt: "Slack", src: "/CYDENTI DASHBOARD P 2/Slack_icon_2019.svg" },
+    { alt: "Salesforce", src: "/CYDENTI DASHBOARD P 2/salesforce.svg" },
     { alt: "Cydenti", src: "cydenti-brandmark.svg", isCenter: true },
-    { alt: "Atlassian", src: "CYDENTI DASHBOARD P 2/Logo-1.svg" },
-    { alt: "Salesforce", src: "CYDENTI DASHBOARD P 2/Logo-4.svg" },
-    { alt: "AWS", src: "CYDENTI DASHBOARD P 2/Logo-5.svg" },
+    { alt: "Atlassian", src: "/CYDENTI DASHBOARD P 2/atlassian.svg" },
+    { alt: "Microsoft 365", src: "/CYDENTI DASHBOARD P 2/M365.svg" },
+    { alt: "Google Workspace", src: "/CYDENTI DASHBOARD P 2/Google__G__logo 2.svg" },
+    { alt: "Okta", src: "/CYDENTI DASHBOARD P 2/okta-logo.png" },
+    { alt: "Microsoft Entra ID", src: "/CYDENTI DASHBOARD P 2/Microsoft_Entra_ID_color_icon 1.svg" },
+    { alt: "AWS", src: "/CYDENTI DASHBOARD P 2/aws.svg" },
+    { alt: "Azure", src: "/CYDENTI DASHBOARD P 2/azure.svg" },
+    { alt: "Google Cloud", src: "/CYDENTI DASHBOARD P 2/google_cloud-icon 1.svg" },
   ];
 
   const getBezierPoint = (t: number) => {
@@ -30,7 +43,7 @@ export function IntegrationsSection() {
               3 * Math.pow(1 - t, 2) * t * p1.y +
               3 * (1 - t) * Math.pow(t, 2) * p2.y +
               Math.pow(t, 3) * p3.y;
-    return { x, y };
+    return { x: x.toFixed(3), y: y.toFixed(3) };
   };
 
   return (
@@ -71,8 +84,8 @@ export function IntegrationsSection() {
           </svg>
 
           {integrations.map((item, i) => {
-            // Distribute points closer to center: t from 0.2 to 0.8
-            const t = 0.2 + (i / (integrations.length - 1)) * 0.6;
+            // Distribute points closer to center: t from 0.05 to 0.95 to fit all items
+            const t = 0.05 + (i / (integrations.length - 1)) * 0.9;
             const pos = getBezierPoint(t);
             
             if (item.isCenter) {
@@ -94,8 +107,8 @@ export function IntegrationsSection() {
 
             const mid = (integrations.length - 1) / 2;
             const dist = Math.abs(i - mid) / mid; 
-            const size = Math.round(72 - 24 * dist); 
-            const icon = Math.round(36 - 10 * dist); 
+            const size = Math.round(56 - 16 * dist); 
+            const icon = Math.round(28 - 8 * dist); 
 
             return (
               <div
@@ -112,17 +125,26 @@ export function IntegrationsSection() {
           })}
         </div>
 
-        {/* Subline chips */}
-        <div className="flex flex-wrap items-center justify-center gap-3 -mt-24 md:-mt-32 relative z-20">
-          {[
-            "API-first",
-            "Zero Data Egress",
-            "Deploys in minutes",
-          ].map((chip) => (
-            <span key={chip} className="text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200 rounded-full px-3 py-1">
-              {chip}
-            </span>
-          ))}
+        {/* Subline chips & CTA */}
+        <div className="flex flex-col items-center gap-8 -mt-24 md:-mt-32 relative z-20">
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {[
+              "API-first",
+              "Zero Data Egress",
+              "Deploys in minutes",
+            ].map((chip) => (
+              <span key={chip} className="text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200 rounded-full px-3 py-1">
+                {chip}
+              </span>
+            ))}
+          </div>
+
+          <Button asChild variant="outline" className="rounded-full border-blue-200 text-blue-700 hover:bg-blue-50 hover:text-blue-800 hover:border-blue-300 transition-all shadow-sm">
+            <Link href="/platform/integrations">
+              View All Integrations
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>

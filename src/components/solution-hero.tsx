@@ -79,10 +79,10 @@ export function SolutionHero() {
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="h-12 px-8 text-base rounded-full border-slate-200 hover:bg-slate-50 hover:text-cydenti-primary">
-              <Link href="/demo">
+              <a href="https://www.linkedin.com/company/cydenti/" target="_blank" rel="noopener noreferrer">
                 Get a Demo
                 <ArrowRight className="ml-2 w-4 h-4" />
-              </Link>
+              </a>
             </Button>
           </motion.div>
         </motion.div>

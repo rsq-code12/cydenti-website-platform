@@ -41,10 +41,10 @@ export function CtaSection() {
                 size="lg" 
                 className="rounded-full bg-white/20 backdrop-blur-lg border border-white/50 text-white hover:bg-white/40 px-10 py-7  text-lg font-bold shadow-xl transition-all hover:scale-105 hover:border-white/60"
               >
-                <Link href="/demo">
+                <a href="https://www.linkedin.com/company/cydenti/" target="_blank" rel="noopener noreferrer">
                   Get a Demo
                   <ArrowRight className="ml-2 w-5 h-5" />
-                </Link>
+                </a>
               </Button>
             </div>
           </div>

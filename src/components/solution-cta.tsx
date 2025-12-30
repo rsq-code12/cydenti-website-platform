@@ -32,15 +32,13 @@ export function SolutionCta() {
             </p>
 
             <div className="pt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button 
-                asChild
-                size="lg" 
-                className="rounded-full bg-white/20 backdrop-blur-lg border border-white/50 text-white hover:bg-white/40 px-10 py-7  text-lg font-bold shadow-xl transition-all hover:scale-105 hover:border-white/60"
-              >
-                <Link href="/demo">
-                  Get a Demo
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Link>
+              <Button asChild size="lg" className="bg-white text-blue-900 hover:bg-blue-50 rounded-full px-8 py-6 text-lg font-bold shadow-lg shadow-blue-900/20">
+                <a href="https://www.linkedin.com/company/cydenti/" target="_blank" rel="noopener noreferrer">
+                  Get a Demo <ArrowRight className="ml-2 w-5 h-5" />
+                </a>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="bg-transparent border-white/20 text-white hover:bg-white/10 rounded-full px-8 py-6 text-lg font-semibold backdrop-blur-sm">
+                <Link href="/platform">Explore Platform</Link>
               </Button>
             </div>
           </div>

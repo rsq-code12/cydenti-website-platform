@@ -27,8 +27,8 @@ export function WhyCydentiSection() {
     },
     {
       icon: Globe,
-      title: "Designed for global security teams",
-      description: "Developed in France, built for worldwide deployment — with privacy, transparency, and security by design."
+      title: "Developed in France",
+      description: "Built for worldwide deployment — with privacy, transparency, and security by design."
     }
   ];
 
@@ -53,36 +53,23 @@ export function WhyCydentiSection() {
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           {features.map((feature, index) => {
-            const isFrench = feature.title.includes("global security teams");
-
-            if (isFrench) {
-              return (
-                <div key={index} className="relative group rounded-[2rem] p-[3px] overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                  {/* French Flag Gradient Border */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#0055A4] via-white to-[#EF4135] opacity-90" />
-                  
-                  {/* Content Container */}
-                  <div className="relative h-full bg-white rounded-[calc(2rem-3px)] p-6 flex gap-5 items-start">
-                    <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-2xl flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-blue-500/20">
-                      <feature.icon className="w-7 h-7" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
-                        {feature.title}
-                      </h3>
-                      <p className="text-slate-500 leading-relaxed">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              );
-            }
+            const isFrench = feature.title === "Developed in France";
 
             return (
               <div key={index} className="flex gap-5 items-start group p-6">
-                <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-2xl flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-blue-500/20">
-                  <feature.icon className="w-7 h-7" />
+                <div className="relative w-14 h-14 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-2xl flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-blue-500/20">
+                  <feature.icon className="w-7 h-7 relative z-10" />
+                  
+                  {isFrench && (
+                    <div className="absolute -bottom-2 -right-2 w-8 h-8 flex items-center justify-center">
+                       <div className="absolute inset-0 bg-white rounded-full shadow-md"></div>
+                       <div className="relative w-5 h-3.5 flex rounded-sm overflow-hidden shadow-sm rotate-[-6deg]">
+                          <div className="w-1/3 h-full bg-[#0055A4]"></div>
+                          <div className="w-1/3 h-full bg-white"></div>
+                          <div className="w-1/3 h-full bg-[#EF4135]"></div>
+                       </div>
+                    </div>
+                  )}
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">

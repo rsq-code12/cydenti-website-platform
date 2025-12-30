@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Search, Filter, Layers, Shield } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 // Integration Data
@@ -88,11 +89,14 @@ export default function Page() {
             <p className="text-xl text-slate-600 leading-relaxed mb-8 max-w-3xl mx-auto">
               Cydenti integrates seamlessly across SaaS, cloud, identity providers, and security tools — without disrupting production environments.
             </p>
-            <div className="flex justify-center">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-500 text-white rounded-xl px-8 py-6 text-lg font-semibold shadow-lg shadow-blue-500/20">
+            <div className="flex justify-center items-center gap-6">
+              <Link href="/solution" className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
+                Learn how we secure integrations <ArrowRight className="w-4 h-4 ml-2" />
+              </Link>
+              <div className="h-4 w-px bg-slate-200 hidden md:block" />
+              <a href="https://www.linkedin.com/company/cydenti/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-slate-500 hover:text-slate-700 font-medium">
                 Get a Demo
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
+              </a>
             </div>
           </motion.div>
         </div>

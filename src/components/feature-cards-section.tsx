@@ -89,7 +89,7 @@ export function FeatureCardsSection() {
                 </div>
               </div>
 
-              <Link href="/solution" className="inline-flex items-center justify-center w-full py-3 px-6 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-semibold transition-colors">
+              <Link href="/platform" className="inline-flex items-center justify-center w-full py-3 px-6 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-semibold transition-colors">
                 Explore Platform
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Link>

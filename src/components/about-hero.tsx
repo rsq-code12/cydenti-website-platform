@@ -81,7 +81,8 @@ export function AboutHero() {
                     </div>
                     <div className="text-right">
                        <p className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1">Headquarters</p>
-                       <p className="text-xl font-bold text-slate-900">Paris, France</p>
+                       <p className="text-xl font-bold text-slate-900">6 RUE D&apos;ARMAILLE</p>
+                       <p className="text-sm font-semibold text-slate-600">75017 PARIS</p>
                     </div>
                   </div>
                 </div>

@@ -10,6 +10,9 @@ export const metadata: Metadata = {
 };
 
 async function getUpdates(): Promise<UpdateItem[]> {
+  if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || !process.env.NEXT_PUBLIC_SANITY_DATASET) {
+    return []
+  }
   try {
     type SanityUpdate = {
       _id: string
@@ -37,6 +40,7 @@ async function getUpdates(): Promise<UpdateItem[]> {
     return updates.map((update) => ({
       id: update._id,
       date: new Date(update.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+      rawDate: update.date,
       title: update.title,
       description: update.description,
       category: update.category as UpdateCategory,
@@ -55,7 +59,7 @@ export default async function UpdatesPage() {
   return (
     <main className="min-h-screen bg-white flex flex-col">
       {/* Header Section */}
-      <section className="bg-white pt-32 pb-16 md:pt-40 md:pb-24">
+      <section className="bg-white pt-32 pb-8 md:pt-40 md:pb-12">
         <div className="container mx-auto px-4 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 mb-8">
             <span className="relative flex h-2 w-2">

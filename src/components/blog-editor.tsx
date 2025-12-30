@@ -529,7 +529,7 @@ export function BlogEditor({ blogId }: BlogEditorProps) {
     setGenerating(true);
     try {
       const token = localStorage.getItem('adminToken');
-      let body: any = { action, keyword: kw, title: formData.title };
+      const body: any = { action, keyword: kw, title: formData.title };
       
       if (action === 'rewrite_text') {
         if (context === 'first100') {

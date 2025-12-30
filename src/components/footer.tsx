@@ -30,6 +30,9 @@ export function Footer() {
             <p className="text-sm leading-relaxed max-w-xs text-slate-500">
               The sovereign intelligence layer for identity security. Built for privacy, automation, and scale.
             </p>
+            <div className="text-sm text-slate-500">
+              6 RUE D&apos;ARMAILLE, 75017 PARIS
+            </div>
             <div className="text-xs text-slate-600">
               &copy; {new Date().getFullYear()} Cydenti. All rights reserved.
             </div>
@@ -78,14 +81,14 @@ export function Footer() {
                 <ul className="space-y-3 text-sm">
                   <li><Link href="/company/about" className="hover:text-blue-400 transition-colors">About Us</Link></li>
                   <li><Link href="/company/updates" className="hover:text-blue-400 transition-colors">New Feature/Update</Link></li>
-                  <li><Link href="/demo" className="hover:text-blue-400 transition-colors">Get a Demo</Link></li>
+                  <li><a href="https://www.linkedin.com/company/cydenti/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">Get a Demo</a></li>
                 </ul>
               </div>
               <div className="space-y-4">
                 <h3 className="text-white font-semibold text-sm tracking-wide">Legal</h3>
                 <ul className="space-y-3 text-sm">
-                  <li><Link href="#" className="hover:text-blue-400 transition-colors">Privacy Policy</Link></li>
-                  <li><Link href="#" className="hover:text-blue-400 transition-colors">Terms of Use</Link></li>
+                  <li><Link href="/legal/privacy-policy" className="hover:text-blue-400 transition-colors">Privacy Policy</Link></li>
+                  <li><Link href="/legal/terms-of-use" className="hover:text-blue-400 transition-colors">Terms of Use</Link></li>
                 </ul>
               </div>
             </div>
